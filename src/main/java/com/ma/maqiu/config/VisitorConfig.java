@@ -14,4 +14,7 @@ public class VisitorConfig {
   @Value("${visitor.count.filepath}")
   private String visitorCountFilePath;
 
+  @Value("${visitor.ips.filepath}")
+  private String ipsFilePath;
+
 }

@@ -53,22 +53,31 @@ public class VisitorService {
     return StringUtils.isBlank(resultNum) ? DEFAULT_NUM : resultNum;
   }
 
-  public void addVisitor(String num){
-    String filePath = visitorConfig.getVisitorCountFilePath();
-    File file = new File(filePath);
+  public void addVisitor(String ipAddress, String num){
+    String countFilePath = visitorConfig.getVisitorCountFilePath();
+    String ipsFilePath = visitorConfig.getIpsFilePath();
+    File countFile = new File(countFilePath);
+    File ipsFile = new File(ipsFilePath);
     try {
-      //如果文件不存在则创建文件
-      file.createNewFile();
+      if (!countFile.exists()) {
+        countFile.createNewFile();
+      }
+      if (!ipsFile.exists()) {
+        ipsFile.createNewFile();
+      }
     } catch (IOException e) {
-      log.error("创建文件file:{}失败.e={}", filePath, e);
+      log.error("countFile:{}, ipsFiles={} 失败.e={}", countFilePath, ipsFilePath, e);
       throw new MaQiuBaseException(ResultCode.CREATE_FILE_ERROR);
     }
     try {
-      List<String> lines = new ArrayList<>(1);
-      lines.add(num);
-      FileUtils.writeLines(file, lines);
+      List<String> countLine = new ArrayList<>(1);
+      countLine.add(num);
+      FileUtils.writeLines(countFile, countLine);
+      List<String> ipLine = new ArrayList<>(1);
+      ipLine.add(ipAddress);
+      FileUtils.writeLines(ipsFile, ipLine);
     } catch (IOException e) {
-      log.error("文件file:{}写入失败.e={}", filePath, e);
+      log.error("文件countFile:{}, ipFile:{}写入失败.e={}", countFilePath, ipsFilePath, e);
       throw new MaQiuBaseException(ResultCode.WRITE_FILE_ERROR);
     }
   }
