@@ -1,6 +1,7 @@
 package com.ma.maqiu.index;
 
-import com.ma.maqiu.service.VisitorService;
+import com.ma.maqiu.entity.Visitor;
+import com.ma.maqiu.service.IVisitorService;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 public class IndexController {
 
   @Resource
-  private VisitorService visitorService;
+  private IVisitorService visitorDBService;
 
   /**
    * 首页
@@ -22,12 +23,11 @@ public class IndexController {
    */
   @RequestMapping("/")
   public String index(HttpServletRequest request){
-    String num;
-    synchronized(visitorService) {
-      num = visitorService.getVisitorCount();
-      visitorService.addVisitor(request.getRemoteAddr(), String.valueOf(Long.valueOf(num) + 1l));
-    }
-    return "hello. 您是第" + num + "访客.";
+    Visitor visitor = new Visitor();
+    visitor.setIp(request.getRemoteAddr());
+    visitor.setUrl(request.getRequestURI());
+    visitorDBService.addVisitor(visitor);
+    return "hello. 您的ip是:" + request.getRemoteAddr();
   }
 
 }
