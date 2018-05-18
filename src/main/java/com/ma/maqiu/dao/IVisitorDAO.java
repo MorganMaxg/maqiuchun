@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface IVisitorDAO {
 
-  @Insert("insert into visitor(ip,url,create_at) value (#{ip}, #{url}), NOW()")
+  @Insert("insert into visitor(ip,url,create_at) value (#{ip}, #{url}, NOW())")
   int insert(Visitor visitor);
 
 }

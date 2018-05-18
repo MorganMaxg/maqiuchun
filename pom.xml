@@ -6,7 +6,7 @@
 
     <groupId>com.maqiu-chun</groupId>
     <artifactId>maqiu-chun</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1-RELEASE</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -77,7 +77,7 @@
             </resource>
         </resources>
         <filters>
-            <filter>../src/main/resources/application-${environment}</filter>
+            <filter>./src/main/resources/application-${environment}.properties</filter>
         </filters>
     </build>
 </project>

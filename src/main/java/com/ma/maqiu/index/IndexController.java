@@ -25,7 +25,7 @@ public class IndexController {
   public String index(HttpServletRequest request){
     Visitor visitor = new Visitor();
     visitor.setIp(request.getRemoteAddr());
-    visitor.setUrl(request.getRequestURI());
+    visitor.setUrl(request.getRequestURL().toString());
     visitorDBService.addVisitor(visitor);
     return "hello. 您的ip是:" + request.getRemoteAddr();
   }
