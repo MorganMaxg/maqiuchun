@@ -6,7 +6,7 @@
 
     <groupId>com.maqiu-chun</groupId>
     <artifactId>maqiu-chun</artifactId>
-    <version>1.0.1-RELEASE</version>
+    <version>1.0.4-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <parent>
