@@ -1,4 +1,5 @@
-create table prop_value(
+--基本属性值表
+create table base_prop_value(
   prop_value_id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '属性值ID',
   prop_value_name VARCHAR(40) NOT NULL DEFAULT '' COMMENT '属性值名称',
   prop_name_id BIGINT NOT NULL COMMENT '属性名ID',
